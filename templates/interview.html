@@ -1,0 +1,190 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Content Structural Offsets */
+    .premium-interview-space {
+        padding-top: 130px;
+        padding-bottom: 80px;
+    }
+
+    /* Core Assessment Container */
+    .interview-glass-container {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(20px) saturate(120%);
+        -webkit-backdrop-filter: blur(20px) saturate(120%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 28px;
+        padding: 40px;
+    }
+
+    /* Console Shell Terminal Wrapper for Questions */
+    .question-console-box {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 18px;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Sleek Tech Input Textareas */
+    .premium-textarea-input {
+        background: rgba(0, 0, 0, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 14px !important;
+        color: #ffffff !important;
+        padding: 18px !important;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 0.98rem;
+        line-height: 1.6;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        resize: vertical;
+    }
+
+    .premium-textarea-input:focus {
+        background: rgba(0, 0, 0, 0.3) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
+        outline: none;
+    }
+
+    .premium-textarea-input::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Metadata Footer Trackers */
+    .input-meta-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        padding: 0 4px;
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Core Action Interactivity */
+    .btn-premium-submit {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        border: none;
+        border-radius: 14px;
+        color: white;
+        font-weight: 600;
+        padding: 16px 40px;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+    }
+
+    .btn-premium-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+        color: white;
+    }
+</style>
+
+<div class="container premium-interview-space">
+    <div class="row justify-content-center">
+        <div class="col-xl-9 col-lg-10">
+
+            <div class="interview-glass-container shadow-lg" data-aos="fade-up" data-aos-duration="800">
+
+                <!-- Main Portal Header -->
+                <div class="text-center mb-5">
+                    <span
+                        class="badge rounded-pill bg-info bg-opacity-10 text-info border border-info border-opacity-25 px-3 py-2 mb-3 small tracking-wide text-uppercase fw-semibold">
+                        <i class="bi bi-shield-check me-1"></i> Interactive Assessment Pipeline
+                    </span>
+                    <h1 class="fw-bold text-white tracking-tight">AI Mock Interview</h1>
+                    <p class="text-muted small max-width-500 mx-auto">
+                        Please provide detailed, production-minded answers. The underlying LLM engine will compute
+                        evaluations based on depth, architecture parity, and syntax precision.
+                    </p>
+                </div>
+
+                <!-- Structural Questionnaire Submission Engine -->
+                <form method="POST" action="/submit-answer" autocomplete="off">
+
+                    {% for question in questions %}
+                    <div class="mb-5" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+
+                        <!-- Premium Terminal Style Question Frame Header -->
+                        <div class="question-console-box mb-3">
+                            <div
+                                class="d-flex align-items-center justify-content-between border-bottom border-secondary border-opacity-25 pb-2 mb-3">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span
+                                        class="badge bg-white bg-opacity-5 text-indigo border border-secondary border-opacity-25 px-2.5 py-1.5 font-monospace"
+                                        style="color: #818cf8 !important;">
+                                        0{{ loop.index }}
+                                    </span>
+                                    <span class="text-white-50 text-uppercase fw-bold tracking-wider"
+                                        style="font-size: 0.7rem;">Active Query Prompt</span>
+                                </div>
+                                <span class="text-muted small font-monospace" style="font-size: 0.65rem;">WEIGHT //
+                                    10.0</span>
+                            </div>
+
+                            <!-- Dynamic Content Insertion Target Area -->
+                            <p class="fs-5 text-white mb-0 fw-medium" style="line-height: 1.5;">
+                                {{ question }}
+                            </p>
+                        </div>
+
+                        <!-- User Multi-Line Response Input Interface -->
+                        <textarea class="form-control premium-textarea-input" id="responseStream_{{ loop.index }}"
+                            rows="6" name="answer{{ loop.index }}"
+                            placeholder="Compose structured technical summary or programmatic logic flow charts here..."
+                            oninput="trackMetrics(this, 'counter_{{ loop.index }}')" required></textarea>
+
+                        <!-- Micro Ingestion Analytics Footprint Tracker Row -->
+                        <div class="input-meta-footer">
+                            <div>
+                                <i class="bi bi-info-circle me-1"></i> Press <kbd
+                                    class="bg-dark text-white-50 border border-secondary border-opacity-50 font-monospace px-1 small">Tab</kbd>
+                                to structure nested layouts cleanly.
+                            </div>
+                            <div class="font-monospace" id="counter_{{ loop.index }}">
+                                0 words · 0 characters
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                    <!-- Form Transaction Operations Footer Frame -->
+                    <div
+                        class="border-top border-secondary border-opacity-25 pt-4 mt-5 d-flex flex-sm-row flex-column justify-content-between align-items-sm-center gap-3">
+                        <div class="d-flex align-items-center gap-2 text-muted small">
+                            <i class="bi bi-exclamation-triangle text-warning"></i>
+                            <span>Answers cannot be adjusted post pipeline submission.</span>
+                        </div>
+                        <button type="submit"
+                            class="btn btn-premium-submit btn-lg d-flex align-items-center gap-2 justify-content-center">
+                            Compile & Submit Answers <i class="bi bi-cpu ms-1"></i>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Integrated Inlining Client Analytics Metric Engine Script -->
+<script>
+    function trackMetrics(textarea, counterId) {
+        const targetOutput = document.getElementById(counterId);
+        const textualValue = textarea.value.trim();
+
+        const characterCount = textualValue.length;
+        const wordCount = textualValue === "" ? 0 : textualValue.split(/\s+/).length;
+
+        targetOutput.innerText = `${wordCount} words · ${characterCount} characters`;
+    }
+</script>
+{% endblock %}

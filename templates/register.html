@@ -1,0 +1,221 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* UI consistency with Login Page */
+    .premium-bg {
+        background-color: #0b0f19;
+        position: relative;
+        min-height: 100vh;
+    }
+
+    .bg-glow-1,
+    .bg-glow-2 {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        z-index: 0;
+        opacity: 0.12;
+    }
+
+    .bg-glow-1 {
+        top: 10%;
+        left: 15%;
+        width: 300px;
+        height: 300px;
+        background: #6366f1;
+    }
+
+    .bg-glow-2 {
+        bottom: 10%;
+        right: 15%;
+        width: 350px;
+        height: 350px;
+        background: #a855f7;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(16px) saturate(120%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .form-floating>.custom-input {
+        background-color: rgba(255, 255, 255, 0.02) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        color: #ffffff !important;
+    }
+
+    .form-floating>.custom-input:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    }
+
+    .form-floating>label {
+        color: rgba(255, 255, 255, 0.4) !important;
+        padding-left: 1.25rem;
+    }
+
+    /* Password Strength Bar */
+    .strength-meter {
+        height: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        margin-top: 8px;
+        overflow: hidden;
+    }
+
+    .strength-bar {
+        height: 100%;
+        width: 0%;
+        transition: all 0.3s ease;
+    }
+
+    /* Show/Hide Password Toggle */
+    .password-toggle {
+        position: absolute;
+        right: 15px;
+        top: 18px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.4);
+        z-index: 10;
+    }
+
+    .btn-premium {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        border: none;
+        border-radius: 14px;
+        color: white;
+        transition: all 0.25s ease;
+    }
+
+    .btn-premium:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+        color: white;
+    }
+
+    .text-premium {
+        color: #818cf8;
+        text-decoration: none;
+    }
+</style>
+
+<section class="vh-100 d-flex align-items-center premium-bg overflow-hidden">
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-8">
+
+                <div class="glass-card shadow-lg p-4 p-sm-5" data-aos="fade-up">
+
+                    <div class="text-center mb-4">
+                        <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary mb-3 px-3 py-2">
+                            <i class="bi bi-shield-check me-1"></i> Joining 10k+ Candidates
+                        </span>
+                        <h2 class="fw-bold text-white mb-2">Create Account</h2>
+                        <p class="text-muted small">Start your AI-powered interview preparation</p>
+                    </div>
+
+                    <form method="POST" id="registrationForm" autocomplete="off">
+                        <div class="form-floating mb-3">
+                            <input type="text" name="username" class="form-control custom-input" id="regUser"
+                                placeholder="Username" required>
+                            <label for="regUser"><i class="bi bi-person me-2"></i>Username</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="email" name="email" class="form-control custom-input" id="regEmail"
+                                placeholder="Email" required>
+                            <label for="regEmail"><i class="bi bi-envelope me-2"></i>Email Address</label>
+                        </div>
+
+                        <div class="form-floating mb-2 position-relative">
+                            <input type="password" name="password" class="form-control custom-input" id="regPassword"
+                                placeholder="Password" required>
+                            <label for="regPassword"><i class="bi bi-lock me-2"></i>Password</label>
+                            <i class="bi bi-eye password-toggle" id="togglePassword"></i>
+                        </div>
+
+                        <div class="px-1 mb-4">
+                            <div class="strength-meter">
+                                <div id="strengthBar" class="strength-bar"></div>
+                            </div>
+                            <small id="strengthText" class="text-muted" style="font-size: 0.75rem;">Password must be at
+                                least 6 chars</small>
+                        </div>
+
+                        <div class="form-check mb-4 small">
+                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                            <label class="form-check-label text-muted" for="termsCheck">
+                                I agree to the <a href="#" class="text-premium">Terms of Service</a> and <a href="#"
+                                    class="text-premium">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-premium w-100 py-3 fw-semibold">
+                            Complete Registration <i class="bi bi-person-plus ms-2"></i>
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-4 pt-3 border-top border-secondary border-opacity-25">
+                        <p class="text-muted small mb-0">
+                            Already have an account?
+                            <a href="/login" class="text-premium fw-semibold ms-1">Login Here</a>
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 1. Password Visibility Toggle
+    const toggleBtn = document.querySelector('#togglePassword');
+    const passwordInput = document.querySelector('#regPassword');
+
+    toggleBtn.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.classList.toggle('bi-eye');
+        this.classList.toggle('bi-eye-slash');
+    });
+
+    // 2. Simple Password Strength Meter
+    passwordInput.addEventListener('input', function () {
+        const val = this.value;
+        const bar = document.querySelector('#strengthBar');
+        const text = document.querySelector('#strengthText');
+
+        let strength = 0;
+        if (val.length >= 6) strength += 25;
+        if (val.match(/[A-Z]/)) strength += 25;
+        if (val.match(/[0-9]/)) strength += 25;
+        if (val.match(/[^A-Za-z0-9]/)) strength += 25;
+
+        bar.style.width = strength + '%';
+
+        if (strength <= 25) {
+            bar.style.backgroundColor = '#ff4d4d'; // Weak
+            text.innerText = "Weak password";
+        } else if (strength <= 75) {
+            bar.style.backgroundColor = '#ffd11a'; // Medium
+            text.innerText = "Medium password";
+        } else {
+            bar.style.backgroundColor = '#00ff88'; // Strong
+            text.innerText = "Strong password!";
+        }
+    });
+</script>
+{% endblock %}

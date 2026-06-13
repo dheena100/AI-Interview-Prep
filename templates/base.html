@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Platform</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark-slate: #0b0f19;
+            --accent-indigo: #6366f1;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--bg-dark-slate);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Animated Premium Matrix Background */
+        .bg-animation {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: var(--bg-dark-slate);
+            overflow: hidden;
+        }
+
+        .bg-animation::before,
+        .bg-animation::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: 0.12;
+        }
+
+        /* Continuous floating blur animations across all pages */
+        .bg-animation::before {
+            top: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--accent-indigo);
+        }
+
+        .bg-animation::after {
+            bottom: -10%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: #06b6d4;
+        }
+
+        /* Glassmorphism Navbar Configuration */
+        .premium-navbar {
+            background: rgba(11, 15, 25, 0.7) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 18px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand i {
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Modern Navigation Utility Buttons */
+        .btn-nav-dashboard {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            color: #e2e8f0;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav-dashboard:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        .btn-nav-logout {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav-logout:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #ffffff;
+        }
+
+        /* Layout Main wrapper padding adjustment */
+        .main-content-wrapper {
+            flex: 1 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Automated Flash Notification UI Container */
+        .toast-container-premium {
+            position: fixed;
+            top: 90px;
+            right: 24px;
+            z-index: 1060;
+        }
+    </style>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="bg-animation"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top premium-navbar">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold tracking-tight d-flex align-items-center fs-4" href="/">
+                <i class="bi bi-cpu-fill me-2 fs-3"></i>
+                AI Interview Prep
+            </a>
+
+            <div class="d-flex align-items-center gap-2">
+                <a href="/dashboard" class="btn btn-nav-dashboard px-4 py-2 small d-flex align-items-center gap-2">
+                    <i class="bi bi-grid-1x2 small"></i> Dashboard
+                </a>
+                <a href="/logout" class="btn btn-nav-logout px-4 py-2 small d-flex align-items-center gap-2">
+                    <i class="bi bi-box-arrow-right small"></i> Logout
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="toast-container-premium">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-dismissible fade show border-0 shadow text-white rgba-blur mb-2"
+            style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-left: 4px solid var(--accent-indigo) !important; border-radius: 12px; width: 320px;"
+            role="alert">
+            <div class="d-flex align-items-center gap-2 small">
+                <i class="bi bi-info-circle-fill text-indigo" style="color: var(--accent-indigo);"></i>
+                <span>{{ message }}</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white small shadow-none" data-bs-dismiss="alert"
+                aria-label="Close" style="font-size: 0.65rem; padding: 1.25rem;"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <main class="main-content-wrapper">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

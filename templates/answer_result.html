@@ -1,0 +1,300 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .premium-eval-space {
+        padding-top: 130px;
+        padding-bottom: 80px;
+    }
+
+    .eval-glass-card {
+
+        background: rgba(255, 255, 255, 0.03);
+
+        backdrop-filter: blur(16px);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        border-radius: 24px;
+
+        padding: 32px;
+    }
+
+    .gradient-text {
+
+        background: linear-gradient(135deg,
+                #a855f7,
+                #6366f1,
+                #06b6d4);
+
+        -webkit-background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+    }
+
+    .feedback-list-premium {
+
+        list-style: none;
+
+        padding-left: 0;
+    }
+
+    .feedback-list-premium li {
+
+        position: relative;
+
+        padding-left: 30px;
+
+        margin-bottom: 15px;
+
+        color: rgba(255, 255, 255, 0.85);
+
+        line-height: 1.7;
+    }
+
+    .feedback-list-premium li::before {
+
+        content: "•";
+
+        position: absolute;
+
+        left: 10px;
+
+        color: #06b6d4;
+
+        font-size: 22px;
+    }
+
+    .answer-terminal {
+
+        background: rgba(0, 0, 0, 0.25);
+
+        border: 1px solid rgba(255, 255, 255, 0.05);
+
+        border-radius: 18px;
+
+        padding: 24px;
+
+        color: rgba(255, 255, 255, 0.8);
+
+        font-family: Consolas, monospace;
+
+        line-height: 1.8;
+
+        white-space: pre-wrap;
+    }
+
+    .btn-premium-action {
+
+        background: linear-gradient(135deg,
+                #6366f1,
+                #4f46e5);
+
+        border: none;
+
+        border-radius: 14px;
+
+        color: white;
+
+        padding: 14px 28px;
+
+        font-weight: 600;
+
+        transition: 0.3s;
+    }
+
+    .btn-premium-action:hover {
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+
+        color: white;
+    }
+
+    .btn-secondary-outline {
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        background: rgba(255, 255, 255, 0.03);
+
+        color: rgba(255, 255, 255, 0.7);
+
+        border-radius: 14px;
+
+        padding: 14px 24px;
+    }
+
+    .btn-secondary-outline:hover {
+
+        background: rgba(255, 255, 255, 0.08);
+
+        color: white;
+    }
+</style>
+
+<div class="container premium-eval-space">
+
+    <!-- Header -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold text-white">
+
+            AI Evaluation Dashboard
+
+        </h1>
+
+        <p class="text-muted">
+
+            Your interview performance analysis
+
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Score Section -->
+
+        <div class="col-lg-4">
+
+            <div class="eval-glass-card text-center">
+
+                <h5 class="text-uppercase text-muted mb-4">
+
+                    Overall Score
+
+                </h5>
+
+                <!-- Simple Premium Progress -->
+
+                <div class="text-center">
+
+                    <h1 class="display-1 fw-bold gradient-text">
+
+                        {{ score }}%
+
+                    </h1>
+
+                    <div class="progress mt-4" style="
+                         height:18px;
+                         border-radius:20px;
+                         background:rgba(255,255,255,0.08);
+                         ">
+
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                            style="width: {{ score }}%; background: linear-gradient(90deg, #06b6d4, #6366f1, #a855f7);">
+                        </div>
+
+                    </div>
+
+                    <p class="text-muted mt-4">
+
+                        AI Match Score Analysis
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Feedback Section -->
+
+        <div class="col-lg-8">
+
+            <div class="eval-glass-card">
+
+                <div class="mb-4">
+
+                    <h3 class="fw-bold text-white">
+
+                        AI Feedback
+
+                    </h3>
+
+                </div>
+
+                <div class="alert bg-dark border-secondary text-light rounded-4">
+
+                    {{ result }}
+
+                </div>
+
+                <ul class="feedback-list-premium mt-4">
+
+                    {% for item in feedback %}
+
+                    <li>
+
+                        {{ item }}
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Submitted Answers -->
+
+    <div class="eval-glass-card mt-4">
+
+        <div class="d-flex
+                    justify-content-between
+                    align-items-center
+                    mb-4">
+
+            <h4 class="fw-bold text-white">
+
+                Submitted Answers
+
+            </h4>
+
+            <span class="badge bg-secondary">
+
+                AI Analysis
+
+            </span>
+
+        </div>
+
+        <div class="answer-terminal">
+
+            {{ answer }}
+
+        </div>
+
+    </div>
+
+    <!-- Buttons -->
+
+    <div class="text-center mt-5">
+
+        <a href="/interview" class="btn btn-premium-action me-3">
+
+            Next Interview
+
+        </a>
+
+        <button class="btn btn-secondary-outline" onclick="window.print()">
+
+            Export Report
+
+        </button>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,336 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    /* Main Layout */
+
+    .premium-analysis-space {
+
+        padding-top: 130px;
+
+        padding-bottom: 80px;
+    }
+
+    /* Premium Glass Card */
+
+    .analysis-glass-card {
+
+        background: rgba(255, 255, 255, 0.03);
+
+        backdrop-filter: blur(18px);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        border-radius: 24px;
+
+        padding: 32px;
+
+        height: 100%;
+    }
+
+    .analysis-glass-card:hover {
+
+        border-color: rgba(255, 255, 255, 0.15);
+
+        transition: 0.3s;
+    }
+
+    /* Gradient Text */
+
+    .gradient-text {
+
+        background: linear-gradient(135deg,
+                #a855f7,
+                #6366f1,
+                #06b6d4);
+
+        -webkit-background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Skill Tags */
+
+    .skill-matrix-tag {
+
+        background: rgba(6, 182, 212, 0.08);
+
+        border: 1px solid rgba(6, 182, 212, 0.18);
+
+        color: #22d3ee;
+
+        padding: 10px 18px;
+
+        border-radius: 12px;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        transition: 0.3s;
+    }
+
+    .skill-matrix-tag:hover {
+
+        transform: translateY(-2px);
+
+        background: rgba(6, 182, 212, 0.15);
+    }
+
+    /* Resume Text Terminal */
+
+    .parsed-text-terminal {
+
+        background: rgba(0, 0, 0, 0.25);
+
+        border: 1px solid rgba(255, 255, 255, 0.05);
+
+        border-radius: 16px;
+
+        padding: 24px;
+
+        font-family: Consolas, monospace;
+
+        color: rgba(255, 255, 255, 0.8);
+
+        line-height: 1.8;
+
+        white-space: pre-wrap;
+
+        max-height: 380px;
+
+        overflow-y: auto;
+    }
+
+    /* Premium Button */
+
+    .btn-premium-cta {
+
+        background: linear-gradient(135deg,
+                #6366f1,
+                #4f46e5);
+
+        border: none;
+
+        border-radius: 14px;
+
+        color: white;
+
+        font-weight: 600;
+
+        padding: 16px 40px;
+
+        transition: 0.3s;
+    }
+
+    .btn-premium-cta:hover {
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+
+        color: white;
+    }
+</style>
+
+<div class="container premium-analysis-space">
+
+    <!-- Header -->
+
+    <div class="text-center mb-5">
+
+        <span class="badge
+                     rounded-pill
+                     bg-info
+                     bg-opacity-10
+                     text-info
+                     border
+                     border-info
+                     border-opacity-25
+                     px-3
+                     py-2
+                     mb-3">
+
+            Resume Analysis Complete
+
+        </span>
+
+        <h1 class="fw-bold text-white">
+
+            Resume Analysis Result
+
+        </h1>
+
+        <p class="text-muted">
+
+            AI-powered ATS and skill analysis completed successfully.
+
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Score Card -->
+
+        <div class="col-lg-4">
+
+            <div class="analysis-glass-card text-center">
+
+                <h5 class="text-uppercase text-muted mb-4">
+
+                    AI Readiness Score
+
+                </h5>
+
+                <!-- Premium Score -->
+
+                <div class="text-center my-3">
+
+                    <h1 class="display-2 fw-bold gradient-text">
+
+                        {{ score }}%
+
+                    </h1>
+
+                    <div class="progress mt-4" style="
+                         height:18px;
+                         border-radius:20px;
+                         background:rgba(255,255,255,0.08);
+                         overflow:hidden;
+                         ">
+
+                        <div class="progress-bar
+                                    progress-bar-striped
+                                    progress-bar-animated" role="progressbar" style="
+                             width: {{ score }}%;
+                             background: linear-gradient(
+                                90deg,
+                                #06b6d4,
+                                #6366f1,
+                                #a855f7
+                             );
+                             ">
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        <span class="badge
+                                     bg-info
+                                     bg-opacity-10
+                                     text-info
+                                     border
+                                     border-info
+                                     border-opacity-25
+                                     px-3
+                                     py-2">
+
+                            ATS Match Score
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p class="text-muted mt-4">
+
+                    AI analyzed your resume structure,
+                    skills, keywords, and ATS compatibility.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Skills Section -->
+
+        <div class="col-lg-8">
+
+            <div class="analysis-glass-card">
+
+                <div class="d-flex align-items-center gap-2 mb-4">
+
+                    <h3 class="fw-bold text-white mb-0">
+
+                        Extracted Skills
+
+                    </h3>
+
+                </div>
+
+                <div class="d-flex flex-wrap gap-3">
+
+                    {% for skill in skills %}
+
+                    <span class="skill-matrix-tag">
+
+                        <i class="bi bi-code-slash"></i>
+
+                        {{ skill }}
+
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Resume Preview -->
+
+    <div class="analysis-glass-card mt-4">
+
+        <div class="d-flex
+                    justify-content-between
+                    align-items-center
+                    mb-4">
+
+            <h4 class="fw-bold text-white">
+
+                Resume Text Preview
+
+            </h4>
+
+            <span class="badge bg-secondary">
+
+                UTF-8 Extracted
+
+            </span>
+
+        </div>
+
+        <div class="parsed-text-terminal">
+
+            {{ resume_text }}
+
+        </div>
+
+    </div>
+
+    <!-- Next Button -->
+
+    <div class="text-center mt-5">
+
+        <a href="/interview" class="btn btn-premium-cta btn-lg">
+
+            Start AI Mock Interview
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

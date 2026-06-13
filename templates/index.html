@@ -1,0 +1,396 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Premium CSS Engines Integration -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Modern Icon Frameworks -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    /* Premium Theme Variable Architecture */
+    :root {
+        --bg-dark-slate: #0b0f19;
+        --accent-indigo: #6366f1;
+        --accent-purple: #a855f7;
+        --accent-cyan: #06b6d4;
+        --glass-white: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.08);
+    }
+
+    body {
+        background-color: var(--bg-dark-slate);
+        color: #ffffff;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        overflow-x: hidden;
+    }
+
+    /* Premium Navigation Bar Adjustment */
+    .premium-nav {
+        background: rgba(11, 15, 25, 0.7) !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--glass-border);
+        z-index: 1000;
+    }
+
+    /* Master Hero Container & Glowing Matrix Elements */
+    .hero-section {
+        position: relative;
+        min-height: 100vh;
+        padding-top: 140px;
+        padding-bottom: 80px;
+        background-color: var(--bg-dark-slate);
+        display: flex;
+        align-items: center;
+    }
+
+    /* Digital Vector Tech Grid Overlay */
+    .tech-grid-overlay {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
+        -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
+        z-index: 1;
+    }
+
+    .ambient-glow-1,
+    .ambient-glow-2 {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(140px);
+        z-index: 0;
+        opacity: 0.15;
+        animation: pulseGlow 10s infinite alternate ease-in-out;
+    }
+
+    .ambient-glow-1 {
+        top: 10%;
+        left: 10%;
+        width: 400px;
+        height: 400px;
+        background: var(--accent-indigo);
+    }
+
+    .ambient-glow-2 {
+        bottom: 15%;
+        right: 10%;
+        width: 450px;
+        height: 450px;
+        background: var(--accent-cyan);
+    }
+
+    @keyframes pulseGlow {
+        0% {
+            transform: scale(1) translate(0px, 0px);
+            opacity: 0.12;
+        }
+
+        100% {
+            transform: scale(1.15) translate(20px, -20px);
+            opacity: 0.18;
+        }
+    }
+
+    .hero-container-rel {
+        position: relative;
+        z-index: 10;
+    }
+
+    /* Premium Typography styling */
+    .hero-title {
+        font-size: 3.75rem;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+    }
+
+    /* Elite Glassmorphic Interactive Feature Cards */
+    .feature-grid-box {
+        background: var(--glass-white);
+        backdrop-filter: blur(16px) saturate(120%);
+        -webkit-backdrop-filter: blur(16px) saturate(120%);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 24px;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-grid-box::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+    }
+
+    .feature-grid-box:hover {
+        transform: translateY(-6px);
+        border-color: rgba(99, 102, 241, 0.3);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-grid-box:hover::before {
+        opacity: 1;
+    }
+
+    .icon-wrapper-premium {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .feature-grid-box:hover .icon-wrapper-premium {
+        background: var(--accent-indigo);
+        color: white !important;
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Premium Call to Action System */
+    .btn-premium-lg {
+        background: linear-gradient(135deg, var(--accent-indigo) 0%, #4f46e5 100%);
+        border: none;
+        border-radius: 14px;
+        color: white;
+        font-weight: 600;
+        padding: 16px 32px;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+    }
+
+    .btn-premium-lg:hover {
+        background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.45);
+        color: white;
+    }
+
+    .btn-outline-premium {
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: transparent;
+        color: white;
+        border-radius: 12px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-outline-premium:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+
+    .btn-register-glow {
+        background: white;
+        color: var(--bg-dark-slate) !important;
+        border-radius: 12px;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        transition: all 0.2s ease;
+    }
+
+    .btn-register-glow:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+    }
+</style>
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top premium-nav">
+    <div class="container">
+        <a class="navbar-brand fw-bold tracking-tight d-flex align-items-center" href="#">
+            <i class="bi bi-cpu-fill text-premium me-2 gradient-text"
+                style="-webkit-text-fill-color: initial; background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); -webkit-background-clip: text; font-size: 1.5rem;"></i>
+            AI Interview Prep
+        </a>
+        <div class="ms-auto d-flex align-items-center">
+            <a href="/login" class="btn btn-outline-premium px-4 me-2 btn-sm">Login</a>
+            <a href="/register" class="btn btn-register-glow px-4 btn-sm">Register</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Master Premium Hero Area -->
+<section class="hero-section">
+    <!-- Immersive digital backdrop components -->
+    <div class="tech-grid-overlay"></div>
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="container hero-container-rel">
+        <div class="row align-items-center gy-5">
+
+            <!-- Left Narrative & Action Column -->
+            <div class="col-xl-5 col-lg-6" data-aos="fade-right" data-aos-duration="900">
+                <span
+                    class="badge rounded-pill bg-primary bg-opacity-10 text-premium border border-primary border-opacity-25 px-3 py-2 mb-3 small d-inline-flex align-items-center">
+                    <span class="pulse-dot me-2"
+                        style="width:6px; height:6px; background:#6366f1; border-radius:50%; display:inline-block; box-shadow:0 0 8px #6366f1;"></span>
+                    Next-Generation Engineering Architecture v2.4
+                </span>
+                <h1 class="hero-title fw-bold text-white mb-4">
+                    Crack Your <span class="gradient-text">Dream Interview</span> with Advanced AI
+                </h1>
+                <p class="fs-5 text-muted mb-4 pb-2" style="line-height: 1.6;">
+                    Upload your resume, build context-specific deep mock profiles, generate real-time predictive
+                    interview pipelines, and map metrics to real world standards seamlessly.
+                </p>
+                <div class="d-flex flex-sm-row flex-column gap-3 align-items-sm-center">
+                    <a href="/register" class="btn btn-premium-lg px-4 py-3 shadow">
+                        Start Preparation Free <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                    <div class="d-flex align-items-center text-muted small ms-sm-2">
+                        <i class="bi bi-shield-check text-success fs-4 me-2"></i> No credit card setup required
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Advanced Features Matrix Column -->
+            <div class="col-xl-6 offset-xl-1 col-lg-6" data-aos="fade-left" data-aos-duration="900">
+
+                <!-- Immersive Metrics Sandbox Dashboard Wrapper -->
+                <div class="mb-4">
+                    <h4 class="text-white fw-bold mb-3 d-flex align-items-center fs-5">
+                        <i class="bi bi-layers-half text-cyan me-2 text-info"></i> Intelligent Subsystem Modules
+                    </h4>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Feature Module 1 -->
+                    <div class="col-sm-6">
+                        <div class="feature-grid-box">
+                            <div class="icon-wrapper-premium text-primary">
+                                <i class="fa-solid fa-file-invoice fs-4 text-indigo"></i>
+                            </div>
+                            <h5 class="text-white fw-semibold mb-2">Resume Parsing</h5>
+                            <p class="text-muted small mb-0">Deep semantic graph parsing maps formatting nodes directly
+                                to engineering frameworks.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature Module 2 -->
+                    <div class="col-sm-6">
+                        <div class="feature-grid-box">
+                            <div class="icon-wrapper-premium text-info">
+                                <i class="fa-solid fa-microchip fs-4 text-cyan"></i>
+                            </div>
+                            <h5 class="text-white fw-semibold mb-2">Adaptive Ingestion</h5>
+                            <p class="text-muted small mb-0">Generates real-time, personalized technical sequences
+                                mapping variables dynamically.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature Module 3 -->
+                    <div class="col-sm-6">
+                        <div class="feature-grid-box">
+                            <div class="icon-wrapper-premium text-purple" style="color:#a855f7;">
+                                <i class="fa-solid fa-chart-pie fs-4"></i>
+                            </div>
+                            <h5 class="text-white fw-semibold mb-2">Predictive Analytics</h5>
+                            <p class="text-muted small mb-0">Live vector metric tracking measures knowledge retention
+                                parameters mathematically.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature Module 4 Interactive Sandbox Simulation Widget -->
+                    <div class="col-sm-6">
+                        <div class="feature-grid-box border-secondary border-opacity-50"
+                            style="background: rgba(99,102,241,0.04);">
+                            <div class="icon-wrapper-premium text-success" style="background: rgba(25,135,84,0.15);">
+                                <i class="bi bi-graph-up-arrow fs-4"></i>
+                            </div>
+                            <h5 class="text-white fw-semibold mb-2">Interactive Simulation</h5>
+                            <p class="text-muted small mb-0">Adjust configuration settings below to simulate custom
+                                preparation pipelines instantly.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Interactive Sandbox Simulation Widget Frame Block -->
+        <div class="row mt-5 pt-4">
+            <div class="col-12">
+                <h4 class="text-white fw-bold mb-3 text-center fs-5"><i class="bi bi-sliders me-2 text-primary"></i>Live
+                    Platform Impact Matrix Simulator</h4>
+                <p class="text-muted text-center small mb-4">Manipulate custom parameter variables to simulate dynamic
+                    data performance scoring metrics inline directly.</p>
+
+                <div class="p-1">
+                    <div id="liveWidgetMount"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Interactive Widget Generation Pipeline Execution Script Base Area -->
+<script>
+    // Embedded interactive matrix rendering block engine logic 
+    document.addEventListener("DOMContentLoaded", function () {
+        const mountNode = document.getElementById("liveWidgetMount");
+        if (mountNode) {
+            mountNode.innerHTML = `
+                <div style="background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 24px; max-width: 800px; margin: 0 auto;">
+                    <div class="row align-items-center g-4">
+                        <div class="col-md-6">
+                            <label class="text-muted small fw-medium mb-2 d-block">Preparation Consistency (Days/Week)</label>
+                            <input type="range" id="paramDays" class="form-range" min="1" max="7" value="4" style="accent-color: #6366f1;">
+                            
+                            <label class="text-muted small fw-medium mt-3 mb-2 d-block">Resume Match Density (%)</label>
+                            <input type="range" id="paramDensity" class="form-range" min="40" max="100" value="75" style="accent-color: #06b6d4;">
+                        </div>
+                        <div class="col-md-6 text-center" style="border-left: 1px solid rgba(255,255,255,0.08);">
+                            <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.4);">Projected Success Likelihood</div>
+                            <div id="metricOutput" style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #06b6d4, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">84%</div>
+                            <div style="font-size: 0.75rem; color: #25c281;"><i class="bi bi-check-circle-fill me-1"></i> Highly Competitive Position Readiness Tier</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const dRange = document.getElementById("paramDays");
+            const densRange = document.getElementById("paramDensity");
+            const outputVal = document.getElementById("metricOutput");
+
+            function recomputeMetric() {
+                const d = parseInt(dRange.value, 10);
+                const dens = parseInt(densRange.value, 10);
+                // Functional algorithmic formula sequence logic mapping variables natively
+                let evaluated = Math.round((d * 6) + (dens * 0.65));
+                if (evaluated > 100) evaluated = 100;
+                outputVal.innerText = evaluated + "%";
+            }
+
+            dRange.addEventListener("input", recomputeMetric);
+            densRange.addEventListener("input", recomputeMetric);
+        }
+    });
+</script>
+{% endblock %}
