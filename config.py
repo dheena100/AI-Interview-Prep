@@ -1,5 +1,5 @@
 MYSQL_HOST = 'localhost'
 MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'DheenaGopinath@2114'
+MYSQL_PASSWORD = 'Your_db_password'
 MYSQL_DB = 'ai_interview_prep'
 SECRET_KEY = 'secret123'
